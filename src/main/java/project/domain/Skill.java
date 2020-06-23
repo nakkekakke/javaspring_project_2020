@@ -1,4 +1,4 @@
-package projekti.domain;
+package project.domain;
 
 import java.util.ArrayList;
 import java.util.List;

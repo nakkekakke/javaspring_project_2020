@@ -1,4 +1,4 @@
-package projekti;
+package project;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,5 +11,15 @@ public class DefaultController {
     public String helloWorld(Model model) {
         model.addAttribute("message", "World!");
         return "index";
+    }
+    
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+    
+    @GetMapping("/register")
+    public String register() {
+        return "register";
     }
 }

@@ -1,4 +1,4 @@
-package projekti.domain;
+package project.domain;
 
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;

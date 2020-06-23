@@ -1,4 +1,4 @@
-package projekti.domain;
+package project.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor @NoArgsConstructor @Data
 public class Account extends AbstractPersistable<Long> {
     
-    private String username;
     private String name;
+    private String username;
     private String password;
     
     @OneToOne

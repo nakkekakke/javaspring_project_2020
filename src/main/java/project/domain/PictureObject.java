@@ -1,4 +1,4 @@
-package projekti.domain;
+package project.domain;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @Data
-class PictureObject extends AbstractPersistable<Long> {
+public class PictureObject extends AbstractPersistable<Long> {
     
     @Lob
     private byte[] content;
