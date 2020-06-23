@@ -16,7 +16,7 @@ public class AccountController {
     private AccountRepository accountRepo;
     
     @Autowired
-    private BCryptPasswordEncoder pwEncoder;
+    private PasswordEncoder pwEncoder;
     
     @PostMapping("/register")
     public String register(@RequestParam String name, @RequestParam String username, @RequestParam String password) {
