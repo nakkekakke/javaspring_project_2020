@@ -27,6 +27,9 @@ public class Account extends AbstractPersistable<Long> {
     @NotEmpty
     private String password;
     
+    @NotEmpty
+    private String profileId;
+    
     @OneToOne
     private PictureObject profilePicture;
     

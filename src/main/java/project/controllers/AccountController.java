@@ -53,10 +53,12 @@ public class AccountController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
+        
         Account dbAccount = new Account();
         dbAccount.setName(accountFormObject.getName());
         dbAccount.setUsername(accountFormObject.getUsername());
         dbAccount.setPassword(pwEncoder.encode(accountFormObject.getPassword()));
+        dbAccount.setProfileId(accountFormObject.getProfileId());
         accountRepo.save(dbAccount);
         redirectAttributes.addFlashAttribute("registerParam", "success");
         return "redirect:/login";

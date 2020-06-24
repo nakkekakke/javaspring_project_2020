@@ -20,4 +20,7 @@ public class AccountFormObject {
     @NotEmpty(message="Password must not be empty")
     @Size(message="Password must be between 5 and 50 characters", min=5, max=50)
     private String password;
+    
+    @Size(message="Profile ID must be between 5 and 50 characters", min=5, max=50)
+    private String profileId;
 }

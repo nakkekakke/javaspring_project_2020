@@ -35,7 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/register").permitAll()
-            .antMatchers("/h2-console", "/h2-console/**").permitAll()
             .anyRequest().authenticated().and()
             .formLogin().loginPage("/login").failureUrl("/login?loginError").defaultSuccessUrl("/index").permitAll().and()
             .logout().logoutUrl("/logout").logoutSuccessUrl("/login?logoutSuccess").permitAll();
