@@ -37,8 +37,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/register").permitAll()
             .antMatchers("/h2-console", "/h2-console/**").permitAll()
             .anyRequest().authenticated().and()
-            .formLogin().defaultSuccessUrl("/index").permitAll().and()
-            .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+            .formLogin().loginPage("/login").failureUrl("/login?loginError").defaultSuccessUrl("/index").permitAll().and()
+            .logout().logoutUrl("/logout").logoutSuccessUrl("/login?logoutSuccess").permitAll();
     }
 
 //    
