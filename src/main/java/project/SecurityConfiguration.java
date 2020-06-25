@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/register").permitAll()
             .anyRequest().authenticated().and()
-            .formLogin().loginPage("/login").failureUrl("/login?loginError").defaultSuccessUrl("/index").permitAll().and()
+            .formLogin().loginPage("/login").failureUrl("/login?loginError").defaultSuccessUrl("/profile", true).permitAll().and()
             .logout().logoutUrl("/logout").logoutSuccessUrl("/login?logoutSuccess").permitAll();
     }
 

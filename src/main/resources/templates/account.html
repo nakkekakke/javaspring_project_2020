@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Account page')">
+        <title>Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <header th:replace="fragments/layout :: header">
+            <h1>Otsikko</h1>
+        </header>
+        <div th:replace="fragments/layout :: search" ></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1><span th:text="${account.name}">Account</span>'s profile <span th:if="${ownPage}">(you)</span></h1>
+                </div>
+            </div>
+            <div th:unless="${ownPage}" class="row">
+                <div class="col-sm-12">
+                    <form th:unless="${mutualConnection}" th:action="@{'/account/' + ${account.profileId} + '/connect/request'}" method="POST" class="form-inline my-2 my-lg-0">
+                        <button class="btn-outline-success my-2" type="submit" >Request connection</button>
+                    </form>
+                    <p th:if="${mutualConnection != null and mutualConnection.confirmed == false}">Connection pending</p>
+                    <p th:if="${mutualConnection != null and mutualConnection.confirmed == true}">You are already connected</p>
+                </div>
+            </div>
+            <div th:if="${ownPage}" class="row">
+                <div class="col-sm-8">
+                    <h4 th:if="${connectedAccounts}" >Connections</h4>
+                    <h4 th:unless="${connectedAccounts}" >No connections yet. Use the search function to find users!</h4>
+                    <ul>
+                        <li th:each="connAccount:${connectedAccounts}">
+                            <p th:text="${connAccount.name}">Account name</p>
+                        </li>
+                    </ul>
+                </div>
+                <div th:if="${requesterAccounts}" class="col-sm-4">
+                    <h4>Connection requests</h4>
+                    <ul>
+                        <li th:each="reqAccount:${requesterAccounts}">
+                            <p th:text="${reqAccount.name}">Account name</p>
+                            <form th:action="@{'/account/' + ${account.profileId} + '/connect/answer'}" method="POST" class="form-inline my-2 my-lg-0">
+                                <input type="hidden" name="answer" value="true" />
+                                <input type="hidden" name="requesterProfileId" th:value="${reqAccount.profileId}" />
+                                <button class="btn-outline-success my-2" type="submit" >Confirm</button>
+                            </form>
+                            <form th:action="@{'/account/' + ${account.profileId} + '/connect/answer'}" method="POST" class="form-inline my-2 my-lg-0">
+                                <input type="hidden" name="answer" value="false" />
+                                <input type="hidden" name="requesterProfileId" th:value="${reqAccount.profileId}" />
+                                <button class="btn-outline-success my-2" type="submit" >Decline</button>
+                            </form>
+                        </li>
+                    </ul>    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

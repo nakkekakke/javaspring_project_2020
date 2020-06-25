@@ -3,6 +3,7 @@ package project.domain;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
@@ -35,9 +36,6 @@ public class Account extends AbstractPersistable<Long> {
     
     @OneToMany(mappedBy = "owner")
     private List<Skill> skills = new ArrayList<>();
-    
-    @OneToMany
-    private List<Connection> connections = new ArrayList<>();
     
     @OneToMany(mappedBy = "creator")
     private List<Post> posts = new ArrayList<>();
